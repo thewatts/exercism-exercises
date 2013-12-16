@@ -1,0 +1,9 @@
+# A sample Guardfile
+# More info at https://github.com/guard/guard#readme
+
+guard :minitest do
+  # with Minitest::Unit
+  watch(%r{phone-number_test.rb})
+  watch(%r{phone_number.rb})            { |m| "phone-number_test.rb" }
+  watch(%r{^test/test_helper\.rb})      { 'test' }
+end
