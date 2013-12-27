@@ -2,12 +2,12 @@ var Beer = require('./beer-song');
 
 describe('Beer', function() {
 
-  it('prints an arbitrary verse', function() {
+  xit('prints an arbitrary verse', function() {
     var expected = "8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n";
     expect(Beer.verse(8)).toEqual(expected);
   });
 
-  xit('handles 1 bottle', function() {
+  it('handles 1 bottle', function() {
     var expected = "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n";
     expect(Beer.verse(1)).toEqual(expected);
   });
