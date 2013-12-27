@@ -22,6 +22,14 @@ var Beer = {
       song += " and pass it around, ";
       song += this.verses["1"].remaining + " bottles of beer on the wall.\n";
     }
+    if (num > 1) {
+      song += num + " " + this.verses["regular"].plural + " of beer on the wall, ";
+      song += num + " " + this.verses["regular"].plural + " of beer.\n";
+      song += "Take " + this.verses["regular"].singular + " down";
+      song += " and pass it around, ";
+      song += num - 1 + " bottles of beer on the wall.\n";
+    }
+
     return song;
   }
 };
