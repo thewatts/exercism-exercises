@@ -7,21 +7,13 @@ class Year
   end
 
   def leap?
-    divisible_by_4? && (!century? || divisible_by_400?)
+    divisible_by?(4) && (!divisible_by?(100) || divisible_by?(400))
   end
 
   private
 
-  def divisible_by_4?
-    year % 4 == 0
-  end
-
-  def century?
-    year % 100 == 0
-  end
-
-  def divisible_by_400?
-    year % 400 == 0
+  def divisible_by?(num)
+    year % num == 0
   end
 
 end
