@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require_relative 'etl'
 
-class TransformTest < MiniTest::Unit::TestCase
+class TransformTest < MiniTest::Test
 
   def test_transform_one_value
     old = { 1 => ['WORLD'] }
