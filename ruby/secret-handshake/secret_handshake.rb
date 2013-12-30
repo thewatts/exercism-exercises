@@ -16,14 +16,22 @@ class SecretHandshake
     #
 
     binary = pointer.to_s(2)
+    data = binary[0..3]
+    negative = binary[4]
     results = []
-    binary.chars.reverse.each.with_index do |digit, index|
+
+    data.chars.reverse.each.with_index do |digit, index|
       if digit == "1"
         key = digit << "0"*index
         results << known_digits[key]
       end
     end
-    results
+
+    if negative == "1"
+      results.reverse
+    else
+      results
+    end
   end
 
   def known_digits
