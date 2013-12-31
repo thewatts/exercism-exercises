@@ -33,7 +33,7 @@ class Bst
   protected
 
   def all_data
-    [data, left_data, right_data].flatten.sort
+    [left_data, data, right_data].flatten
   end
 
   def left_data
