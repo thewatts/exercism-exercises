@@ -3,31 +3,26 @@ class Bst
   attr_reader :data
   attr_accessor :left, :right
 
-  def initialize(input)
-    @data = input
+  def initialize(data)
+    @data = data
   end
 
   def each
     all_data.each { |data| yield data }
   end
 
-  def insert(input)
-    case
-    when input > data
-      insert_or_create(:right, input)
-    when input < data || input == data
-      insert_or_create(:left, input)
-    end
+  def insert(new_data)
+    new_data > data ? add_right(new_data) : add_left(new_data)
   end
 
   private
 
-  def insert_or_create(leaf, new_data)
-    if send(leaf)
-      send(leaf).insert(new_data)
-    else
-      send("#{leaf}=", Bst.new(new_data))
-    end
+  def add_right(new_data)
+    right ? right.insert(new_data) : self.right = Bst.new(new_data)
+  end
+
+  def add_left(new_data)
+    left ? left.insert(new_data) : self.left = Bst.new(new_data)
   end
 
   protected
