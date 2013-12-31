@@ -1,9 +1,9 @@
 class Bst
 
-  attr_reader :pointer
+  attr_reader :data, :left, :right
 
   def initialize(input)
-    @pointer = Node.new(input)
+    @data = input
   end
 
   def each
@@ -13,55 +13,10 @@ class Bst
   end
 
   def all_data
-    pointer.all_data.flatten.sort
-  end
-
-  def data
-    pointer.data
-  end
-
-  def insert(input)
-    case
-    when input > pointer.data
-      pointer.add_right(input)
-    when input < pointer.data || input == pointer.data
-      pointer.add_left(input)
-    end
-  end
-
-  def left
-    pointer.left
-  end
-
-  def right
-    pointer.right
-  end
-end
-
-class Node
-
-  attr_reader :value, :left, :right
-
-  def initialize(number)
-    @value = number
-    @left  = nil
-    @right = nil
-  end
-
-  def add_left(input)
-    unless left
-      @left = Node.new(input)
-    else
-      left.insert(input)
-    end
-  end
-
-  def add_right(input)
-    unless right
-      @right = Node.new(input)
-    else
-      right.insert(input)
-    end
+    all = [data]
+    all.push left.all_data if left
+    all.push right.all_data if right
+    all.flatten.sort
   end
 
   def insert(input)
@@ -73,15 +28,20 @@ class Node
     end
   end
 
-  def data
-    value
+  def add_left(input)
+    unless left
+      @left = Bst.new(input)
+    else
+      left.insert(input)
+    end
   end
 
-  def all_data
-    all = [data]
-    all.push left.all_data if left
-    all.push right.all_data if right
-    all
+  def add_right(input)
+    unless right
+      @right = Bst.new(input)
+    else
+      right.insert(input)
+    end
   end
 
 end
