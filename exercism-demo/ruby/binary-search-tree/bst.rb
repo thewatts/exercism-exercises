@@ -8,9 +8,7 @@ class Bst
   end
 
   def each
-    all_data.each do |value|
-      yield value
-    end
+    all_data.each { |data| yield data }
   end
 
   def insert(input)
