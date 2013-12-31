@@ -1,6 +1,7 @@
 class Bst
 
-  attr_reader :data, :left, :right
+  attr_reader :data
+  attr_accessor :left, :right
 
   def initialize(input)
     @data = input
@@ -12,36 +13,40 @@ class Bst
     end
   end
 
-  def all_data
-    all = [data]
-    all.push left.all_data if left
-    all.push right.all_data if right
-    all.flatten.sort
-  end
-
   def insert(input)
     case
     when input > data
-      add_right(input)
+      insert_or_create(:right, input)
     when input < data || input == data
-      add_left(input)
+      insert_or_create(:left, input)
     end
   end
 
-  def add_left(input)
-    unless left
-      @left = Bst.new(input)
+  private
+
+  def insert_or_create(leaf, new_data)
+    if send(leaf)
+      send(leaf).insert(new_data)
     else
-      left.insert(input)
+      send("#{leaf}=", Bst.new(new_data))
     end
   end
 
-  def add_right(input)
-    unless right
-      @right = Bst.new(input)
-    else
-      right.insert(input)
-    end
+  protected
+
+  def all_data
+    [data, left_data, right_data].flatten.sort
   end
+
+  def left_data
+    return [] unless left
+    left.all_data
+  end
+
+  def right_data
+    return [] unless right
+    right.all_data
+  end
+
 
 end
