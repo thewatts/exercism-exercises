@@ -28,18 +28,11 @@ class Bst
   protected
 
   def all_data
-    [left_data, data, right_data].flatten
+    result = []
+    result += left.all_data  if left
+    result += [data]
+    result += right.all_data if right
+
+    result
   end
-
-  def left_data
-    return [] unless left
-    left.all_data
-  end
-
-  def right_data
-    return [] unless right
-    right.all_data
-  end
-
-
 end
