@@ -7,7 +7,7 @@ class Bst
     @data = data
   end
 
-  def each
+  def each(&block)
     all_data.each { |data| yield data }
   end
 
