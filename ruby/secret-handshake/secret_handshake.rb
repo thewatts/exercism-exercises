@@ -1,33 +1,30 @@
+require 'pry'
+
 class SecretHandshake
-  attr_reader :pointer
+  attr_reader :binary
 
   def initialize(input)
-    @pointer = input
+    if input.kind_of?(Fixnum)
+      @binary = input.to_s(2).reverse
+    else
+      @binary = ""
+    end
   end
 
   def commands
-    # 1. Take the decimal and convert it to binary string
-    # 2. Starting from the right, go through each digit
-    # 3. If it is a "1" then add this element to the commands
-    #
-    # 3 becomes "11"
-    # Take the rightmost "1" and look it up as "wink"
-    # Take the other "1" and look it up as "double blink"
-    #
-
-    binary = pointer.to_s(2)
     data = binary[0..3]
     negative = binary[4]
     results = []
 
-    data.chars.reverse.each.with_index do |digit, index|
+    data.chars.each_with_index do |digit, index|
+      #binding.pry
       if digit == "1"
-        key = digit << "0"*index
+        key = digit + "0"*index
         results << known_digits[key]
       end
     end
 
-    if negative == "1"
+    if negative
       results.reverse
     else
       results
