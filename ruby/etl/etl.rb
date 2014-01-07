@@ -1,7 +1,7 @@
 class ETL
   def self.transform(input)
-    input.each_with_object({}) do |(score, chars), new_scores|
-      chars.each { |char| new_scores[char.downcase] = score }
+    input.each_with_object({}) do |(score, letters), output|
+      letters.each { |letter| output[letter.downcase] = score }
     end
   end
 end

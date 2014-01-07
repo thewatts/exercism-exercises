@@ -12,8 +12,8 @@ class Year
 
   private
 
-  def divisible_by?(num)
-    year % num == 0
+  def divisible_by?(i)
+    year % i == 0
   end
 
 end
