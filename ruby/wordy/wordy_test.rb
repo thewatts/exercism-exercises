@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'word_problem'
 
 class WordProblemTest < MiniTest::Unit::TestCase
@@ -7,7 +8,7 @@ class WordProblemTest < MiniTest::Unit::TestCase
   end
 
   def test_add_2
-    skip
+    #skip
     assert_equal 55, WordProblem.new('What is 53 plus 2?').answer
   end
 
