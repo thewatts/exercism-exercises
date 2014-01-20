@@ -16,6 +16,8 @@ class Proverb
     convert_desired_to_proverb << last_verse
   end
 
+  private
+
   def convert_desired_to_proverb
     desired.inject("") do |proverb, item|
       proverb << verse(item)
